@@ -1,15 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import os, glob
-import pydicom
-import pylab as pl
-import sys
-import matplotlib.path as mplPath
+import imageio
 
 class IndexTracker(object):
     def __init__(self, ax, X):
         self.ax = ax
-        ax.set_title('Scroll to Navigate through the DICOM Image Slices')
+        ax.set_title('Use scroll wheel to navigate images')
 
         self.X = X
         rows, cols, self.slices = X.shape
@@ -28,26 +24,17 @@ class IndexTracker(object):
 
     def update(self):
         self.im.set_data(self.X[:, :, self.ind])
-        ax.set_ylabel('Slice Number: %s' % self.ind)
+        ax.set_ylabel('slice %s' % self.ind)
         self.im.axes.figure.canvas.draw()
 
-fig, ax = plt.subplots(1,1)
+dirname = 'data/'
 
-os.system("tree C:/Users/Dicom_ROI")
+# read as volume
+vol = imageio.volread(dirname, 'DICOM')
 
-plots = []
+fig, ax = plt.subplots(1, 1)
+tracker = IndexTracker(ax, vol)
 
-for f in glob.glob("data/*.dcm"):
-    pass
-    filename = f.split("/")[-1]
-    ds = pydicom.dcmread(filename)
-    pix = ds.pixel_array
-    pix = pix*1+(-1024)
-    plots.append(pix)
-
-y = np.dstack(plots)
-
-tracker = IndexTracker(ax, y)
 
 fig.canvas.mpl_connect('scroll_event', tracker.onscroll)
 plt.show()

@@ -16,11 +16,9 @@ vol = imageio.volread(dirname, 'DICOM')
 
 print(type(vol))
 print("Dimensions of image array :", vol.shape)
-#print("Available metadata :", vol.meta.keys())
-#plt.imshow(vol[1], aspect=1)
-#plt.show()
 
-'''
+print("Available metadata :", vol.meta.keys())
+
 def remove_keymap_conflicts(new_keys_set):
     for prop in plt.rcParams:
         if prop.startswith('keymap.'):
@@ -57,4 +55,4 @@ def next_slice(ax):
     ax.images[0].set_array(volume[ax.index])
 
 multi_slice_viewer(vol)
-'''
+plt.show()
