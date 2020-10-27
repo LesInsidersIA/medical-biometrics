@@ -33,6 +33,9 @@ dirname = 'data/'
 vol = imageio.volread(dirname, 'DICOM')
 
 fig, ax = plt.subplots(1, 1)
+
+X = np.random.rand(20, 20, 40)
+
 tracker = IndexTracker(ax, vol)
 
 
