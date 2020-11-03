@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+assignement3/data/*
+assignement2/data/*
+assignement1/SCD2001_files/*
+
 # Distribution / packaging
 .Python
 build/
