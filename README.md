@@ -1,5 +1,5 @@
 # medical-biometrics
-Assignement for medicals biometrics
+Assignement for medicals biometrics at UPEC
 
 ## Assignement 1 :
 ### Constructing a 3D volumetric image from 2D Biomedical images :
